@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { of, pipe } from 'rxjs';
+import { map, first } from 'rxjs/operators';
 
 @Component({
   selector: 'operator',
@@ -12,8 +12,8 @@ export class OperatorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // map(x => x * x)(of(1, 2, 3)).subscribe((v) => console.log(`value: ${v}`));
-    // first()(of(1, 2, 3)).subscribe((v) => console.log(`value: ${v}`));
+    (of(1, 2, 3)).pipe(map(x => x * x)).subscribe((v) => console.log(`value: ${v}`));
+    (of(1, 2, 3)).pipe(first()).subscribe((v) => console.log(`value: ${v}`));
   }
 
 }
